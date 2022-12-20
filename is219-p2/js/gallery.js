@@ -47,8 +47,14 @@ var mCurrentIndex = 0;
 var mRequest = new XMLHttpRequest();
 
 myRequest.onreadystatechange= fucntion(){
-	if(this.readystate == 4 && this)
+	if(this.readystate == 4 && this.status == 200){
+		mJson =JSON.parse(this.responseText);
+		resolve(data);
+	} else if(this.readyState == 4){
+		reject('error getting resource');
+	}
 }
+
 // Array holding GalleryImage objects (see below).
 var mImages = [];
 
